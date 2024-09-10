@@ -1,5 +1,13 @@
-com\schuquiej\proyecto_algoritmos\Proyecto_algoritmos.class
-interfaces\loginUser$1.class
-interfaces\loginUser$2.class
+interfaces\menuform$1.class
+interfaces\productoForm$1.class
 interfaces\loginUser.class
+interfaces\menuform.class
+com\schuquiej\proyecto_algoritmos\Proyecto_algoritmos.class
+modelos\Item.class
+inyeccion\funcionalidad.class
+interfaces\loginUser$2.class
 interfaces\loginUser$3.class
+interfaces\loginUser$1.class
+interfaces\productoForm.class
+interfaces\productoForm$2.class
+interfaces\menuform$2.class

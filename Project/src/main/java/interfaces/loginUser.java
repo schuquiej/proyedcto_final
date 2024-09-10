@@ -1,13 +1,11 @@
 package interfaces;
 
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import javax.swing.JOptionPane;
+
+import inyeccion.funcionalidad;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,7 +13,6 @@ import javax.swing.JOptionPane;
  */
 
 /**
- *
  * @author sergi
  */
 public class loginUser extends javax.swing.JFrame {
@@ -39,10 +36,12 @@ public class loginUser extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         usuario = new javax.swing.JTextField();
         contraseña = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("jButton1");
+        jButton1.setText("Ingresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -55,149 +54,72 @@ public class loginUser extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Usuario");
+
+        jLabel2.setText("Contraseña");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(161, 161, 161)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(164, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(usuario , javax.swing.GroupLayout.PREFERRED_SIZE , 136 , javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(64 , 64 , 64)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                        .addComponent(jLabel2 , javax.swing.GroupLayout.PREFERRED_SIZE , 72 , javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                        .addComponent(jLabel1 , javax.swing.GroupLayout.PREFERRED_SIZE , 99 , javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addGap(101 , 101 , 101)
+                                                                .addComponent(contraseña , javax.swing.GroupLayout.PREFERRED_SIZE , 136 , javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(131 , 131 , 131)
+                                                .addComponent(jButton1)))
+                                .addContainerGap(158 , Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(110, 110, 110))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING , layout.createSequentialGroup()
+                                .addGap(17 , 17 , 17)
+                                .addComponent(jLabel1)
+                                .addGap(18 , 18 , 18)
+                                .addComponent(usuario , javax.swing.GroupLayout.PREFERRED_SIZE , javax.swing.GroupLayout.DEFAULT_SIZE , javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2 , 2 , 2)
+                                .addComponent(jLabel2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(contraseña , javax.swing.GroupLayout.PREFERRED_SIZE , javax.swing.GroupLayout.DEFAULT_SIZE , javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton1)
+                                .addContainerGap(146 , Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        boolean validar =validUser(this.usuario.getText(),this.contraseña.getText());
-        
-        if(validar)
-        {
-        JOptionPane.showMessageDialog( this , "Aprobado", "Ver último vehículo" , JOptionPane.WARNING_MESSAGE );
-            
-        }
-        else
-            
-        {
-                    JOptionPane.showMessageDialog( this , "Acceso denegado.", "Ver último vehículo" , JOptionPane.WARNING_MESSAGE );
+        funcionalidad usuario = new funcionalidad();
+        boolean validar = usuario.validarUsuario(this.usuario.getText() , this.contraseña.getText());
 
+
+        if (validar) {
+            JOptionPane.showMessageDialog(this , "Aprobado" , "Schuquiej" , JOptionPane.WARNING_MESSAGE);
+            usuario.crearDb();
+            this.setVisible(false);
+            menuform menuformulario = new menuform();
+            menuformulario.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this , "Acceso denegado." , "Schuquiej" , JOptionPane.WARNING_MESSAGE);
         }
-        
-        
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contraseñaActionPerformed
 
-    
-    private void crearDb()
-    {
-         String carpetaProyecto = "db";
-        String nombreArchivo = "db_const.txt";
-        File archivo = new File(carpetaProyecto, nombreArchivo);
- File carpeta = new File(carpetaProyecto);
-        // Usar BufferedReader para leer el archivo
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(archivo))) {
-            String linea;
-            
-            // Leer el archivo línea por línea
-            while ((linea = bufferedReader.readLine()) != null) {
-                System.out.println(linea);
-                
-                 // Crear la carpeta si no existe
-            if (!carpeta.exists()) {
-                carpeta.mkdirs();
-            }
-            archivo = new File(carpetaProyecto, linea+".text");
 
-             if (archivo.createNewFile()) {
-                System.out.println("Archivo creado exitosamente: " + archivo.getAbsolutePath());
-            } else {
-                System.out.println("El archivo ya existe.");
-            }
-           
-                
-                
-            }
-
-        } catch (IOException e) {
-        }
-    }
-    
-    
-    private void escribirDb(String nombredb, String contenido)
-    {
-        String carpetaProyecto = "db";
-        String nombreArchivo = nombredb+".txt";
-         contenido = "Hola, este es el contenido del archivo.";
-
-        // Crear una instancia de File para la carpeta y el archivo
-        File carpeta = new File(carpetaProyecto);
-        File archivo = new File(carpeta, nombreArchivo);
-
-        try {
-            // Crear la carpeta si no existe
-            if (!carpeta.exists()) {
-                carpeta.mkdirs();
-            }
-
-            // Crear FileWriter y BufferedWriter para escribir en el archivo
-            FileWriter fileWriter = new FileWriter(archivo);
-            // Escribir el contenido en el archivo
-            try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
-                // Escribir el contenido en el archivo
-                bufferedWriter.write(contenido);
-                // Cerrar el BufferedWriter
-            }
-
-            System.out.println("Archivo creado y contenido guardado en: " + archivo.getAbsolutePath());
-
-        } catch (IOException e) {
-        }
-    }
-    
-    
-    
-    
-    
-    private boolean validUser(String contraseña, String usuario)
-    {
-        
-                // Ruta relativa a la carpeta del proyecto
-        this.crearDb();
-        boolean saber = false;
-        System.out.print(contraseña);
-        System.out.print(usuario);
-        
-        if("sergio".equals(contraseña) && "sergio".equals(usuario))
-        {
-            saber = true;
-        }
-         
-        return saber ;
-        
-    }
     /**
      * @param args the command line arguments
      */
@@ -205,7 +127,7 @@ public class loginUser extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -215,13 +137,13 @@ public class loginUser extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
         }
         //</editor-fold>
 
@@ -236,6 +158,8 @@ public class loginUser extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField contraseña;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField usuario;
     // End of variables declaration//GEN-END:variables
 }
