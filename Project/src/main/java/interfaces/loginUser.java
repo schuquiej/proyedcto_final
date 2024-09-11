@@ -1,7 +1,6 @@
 package interfaces;
 
 
-
 import javax.swing.JOptionPane;
 
 import inyeccion.funcionalidad;
@@ -15,12 +14,12 @@ import inyeccion.funcionalidad;
 /**
  * @author sergi
  */
-public class loginUser extends javax.swing.JFrame {
+public class loginUser extends javax.swing.JFrame{
 
     /**
      * Creates new form loginUser
      */
-    public loginUser() {
+    public loginUser(){
         initComponents();
     }
 
@@ -31,7 +30,7 @@ public class loginUser extends javax.swing.JFrame {
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents(){
 
         jButton1 = new javax.swing.JButton();
         usuario = new javax.swing.JTextField();
@@ -42,14 +41,14 @@ public class loginUser extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("Ingresar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        jButton1.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt){
                 jButton1ActionPerformed(evt);
             }
         });
 
-        contraseña.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        contraseña.addActionListener(new java.awt.event.ActionListener(){
+            public void actionPerformed(java.awt.event.ActionEvent evt){
                 contraseñaActionPerformed(evt);
             }
         });
@@ -99,12 +98,12 @@ public class loginUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jButton1ActionPerformed
         funcionalidad usuario = new funcionalidad();
         boolean validar = usuario.validarUsuario(this.usuario.getText() , this.contraseña.getText());
 
 
-        if (validar) {
+        if (validar){
             JOptionPane.showMessageDialog(this , "Aprobado" , "Schuquiej" , JOptionPane.WARNING_MESSAGE);
             usuario.crearDb();
             this.setVisible(false);
@@ -115,7 +114,7 @@ public class loginUser extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaActionPerformed
+    private void contraseñaActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_contraseñaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contraseñaActionPerformed
 
@@ -123,33 +122,33 @@ public class loginUser extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]){
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+        try{
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
+                if ("Nimbus".equals(info.getName())){
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex){
             java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
-        } catch (InstantiationException ex) {
+        } catch (InstantiationException ex){
             java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
-        } catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex){
             java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex){
             java.util.logging.Logger.getLogger(loginUser.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(new Runnable(){
+            public void run(){
                 new loginUser().setVisible(true);
             }
         });

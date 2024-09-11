@@ -5,6 +5,12 @@
 package inyeccion;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 /**
  * @author sergi
@@ -31,7 +37,7 @@ public class funcionalidad {
         try (BufferedReader bufferedReader = new BufferedReader(new FileReader(archivo))) {
             String linea;
             while ((linea = bufferedReader.readLine()) != null) {
-                System.out.println(linea);
+
                 if (!carpeta.exists()) {
                     carpeta.mkdirs();
                 }
@@ -52,7 +58,7 @@ public class funcionalidad {
     public void escribirDb(String nombredb , String contenido) {
         String carpetaProyecto = "db";
         String nombreArchivo = nombredb + ".txt";
-      
+
         File carpeta = new File(carpetaProyecto);
         File archivo = new File(carpeta , nombreArchivo);
 
@@ -61,16 +67,46 @@ public class funcionalidad {
                 carpeta.mkdirs();
             }
 
-            FileWriter fileWriter = new FileWriter(archivo, true);
+            FileWriter fileWriter = new FileWriter(archivo , true);
             try (BufferedWriter bufferedWriter = new BufferedWriter(fileWriter)) {
                 bufferedWriter.write(contenido);
-                    bufferedWriter.newLine(); 
+                bufferedWriter.newLine();
             }
 
         } catch (IOException e) {
         }
     }
 
+
+    public ArrayList<ArrayList<String>> leerDb(String nombredb) {
+        String carpetaProyecto = "db";
+        String nombreArchivo = nombredb + ".txt";
+
+        File carpeta = new File(carpetaProyecto);
+        File archivo = new File(carpeta , nombreArchivo);
+
+        ArrayList<ArrayList<String>> list = new ArrayList<>();
+
+
+        try (FileInputStream fis = new FileInputStream(archivo); InputStreamReader isr = new InputStreamReader(fis); BufferedReader br = new BufferedReader(isr)) {
+
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                String[] dataArray = new String[0];
+                dataArray = line.split(",");
+                ArrayList<String> row1 = new ArrayList<>(Arrays.asList(dataArray));
+                list.add(row1);
+
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        return list;
+    }
 
 
 }
