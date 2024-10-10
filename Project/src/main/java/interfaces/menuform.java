@@ -87,9 +87,8 @@ public class menuform extends javax.swing.JFrame{
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
 
-        productoForm prod = new productoForm();
-        this.setVisible(false);
-        prod.setVisible(true);
+        productoForm.obtenerPantalla();
+        
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
@@ -97,7 +96,7 @@ public class menuform extends javax.swing.JFrame{
         // TODO add your handling code here:
 
         categoriaForm cate = new categoriaForm();
-        this.setVisible(false);
+       // this.setVisible(false);
         cate.setVisible(true);
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -105,7 +104,7 @@ public class menuform extends javax.swing.JFrame{
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         listadoCategoriasForm lcate = new listadoCategoriasForm();
-        this.setVisible(false);
+        //this.setVisible(false);
         lcate.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 

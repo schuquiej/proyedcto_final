@@ -11,6 +11,7 @@ inyeccion\funcionalidad.class
 interfaces\menuform$4.class
 interfaces\loginUser$2.class
 interfaces\loginUser$3.class
+interfaces\productoForm$3.class
 interfaces\menuform$3.class
 interfaces\loginUser$1.class
 interfaces\productoForm.class

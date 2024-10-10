@@ -22,6 +22,8 @@ import com.fasterxml.jackson.databind.node.ArrayNode;
  */
 public class listadoCategoriasForm extends javax.swing.JFrame{
 
+    
+    private static listadoCategoriasForm esVisible;
     /**
      * Creates new form listadoCategoriasForm
      */
@@ -37,20 +39,42 @@ public class listadoCategoriasForm extends javax.swing.JFrame{
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents(){
+    private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaCategoria = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        tablaCategoria.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{{null , null , null} , {null , null , null} , {null , null , null} , {null , null , null}} , new String[]{"CODIGO" , "NOMBRE" , "DESCRIPCION"}));
+        tablaCategoria.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "CODIGO", "NOMBRE", "DESCRIPCION"
+            }
+        ));
         jScrollPane1.setViewportView(tablaCategoria);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING , layout.createSequentialGroup().addContainerGap(19 , Short.MAX_VALUE).addComponent(jScrollPane1 , javax.swing.GroupLayout.PREFERRED_SIZE , 375 , javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap()));
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addContainerGap().addComponent(jScrollPane1 , javax.swing.GroupLayout.PREFERRED_SIZE , 275 , javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(19 , Short.MAX_VALUE)));
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(19, Short.MAX_VALUE))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -111,6 +135,18 @@ public class listadoCategoriasForm extends javax.swing.JFrame{
 
 
     }
+    
+    
+        public static listadoCategoriasForm obtenerPantalla()
+    {
+        if (esVisible == null)
+        {
+            esVisible = new listadoCategoriasForm();
+            obtenerPantalla().setVisible(true);
+        }
+        return esVisible;
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

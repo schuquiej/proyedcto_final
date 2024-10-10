@@ -5,7 +5,9 @@
 package interfaces;
 
 import inyeccion.funcionalidad;
+import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JFrame;
 
 import modelos.Item;
 
@@ -14,6 +16,9 @@ import modelos.Item;
  */
 public class productoForm extends javax.swing.JFrame {
 
+    
+    
+    private static productoForm esVisible;
 
      String valor ;
      String etiqueta; 
@@ -29,10 +34,17 @@ public class productoForm extends javax.swing.JFrame {
        
         DefaultComboBoxModel<Item> model = new DefaultComboBoxModel<>();
 
-        model.addElement(new Item("1", "CATEGORIA 1"));
-        model.addElement(new Item("2", "CATEGORIA 2"));
-        model.addElement(new Item("3", "CATEGORIA 3"));
+            funcionalidad funcionalidad = new funcionalidad();
 
+        ArrayList<ArrayList<String>> resultado = funcionalidad.leerDb("categorias");
+        for (ArrayList<String> row : resultado){
+            System.out.println(row);
+
+           model.addElement(new Item(row.get(0), row.get(1)));
+        }
+
+        
+        
         categorias.setModel(model);
         
               categorias.addActionListener(e -> {
@@ -67,7 +79,12 @@ public class productoForm extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jLabel1.setText("codigo de producto");
 
@@ -155,6 +172,11 @@ public class productoForm extends javax.swing.JFrame {
   
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_formWindowClosed
+
     /**
      * @param args the command line arguments
      */
@@ -195,6 +217,16 @@ public class productoForm extends javax.swing.JFrame {
 
     }
 
+    public static productoForm obtenerPantalla()
+    {
+        if (esVisible == null)
+        {
+            esVisible = new productoForm();
+            obtenerPantalla().setVisible(true);
+        }
+        return esVisible;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Item> categorias;
     private javax.swing.JTextField codigo;
