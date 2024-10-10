@@ -37,15 +37,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel4" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="categorias" min="-2" pref="184" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="descri" min="-2" pref="72" max="-2" attributes="0"/>
-                                      <Component id="nombre" min="-2" pref="72" max="-2" attributes="0"/>
-                                      <Component id="codigo" min="-2" pref="72" max="-2" attributes="0"/>
-                                  </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="descri" max="32767" attributes="0"/>
+                                  <Component id="categorias" pref="184" max="32767" attributes="0"/>
                               </Group>
                           </Group>
+                          <Component id="codigo" alignment="1" min="-2" pref="184" max="-2" attributes="0"/>
+                          <Component id="nombre" alignment="1" min="-2" pref="184" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -72,10 +70,11 @@
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="descri" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="categorias" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="categorias" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jButton1" min="-2" max="-2" attributes="0"/>
               <EmptySpace pref="30" max="32767" attributes="0"/>
