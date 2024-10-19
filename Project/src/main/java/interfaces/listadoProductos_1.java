@@ -28,8 +28,8 @@ public class listadoProductos_1 extends javax.swing.JFrame {
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("CODIGO DE PRODUCTO");
-        model.addColumn("NOMBRE");
-        model.addColumn("CATEGORIA");
+        model.addColumn("PRODUCTO");
+        model.addColumn("CANTIDAD");
         tablaCategoria.setModel(model);
         funcionalidad funcionalidad = new funcionalidad();
 
