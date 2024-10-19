@@ -9,12 +9,12 @@ import interfaces.productoForm;
 /**
  * @author sergi
  */
-public class menuform extends javax.swing.JFrame{
+public class menuform extends javax.swing.JFrame {
 
     /**
      * Creates new form menuform
      */
-    public menuform(){
+    public menuform() {
         initComponents();
     }
 
@@ -46,8 +46,10 @@ public class menuform extends javax.swing.JFrame{
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         jMenuItem11 = new javax.swing.JMenuItem();
         jMenuItem12 = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        stock = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jMenu1.setText("Productos");
 
@@ -92,6 +94,11 @@ public class menuform extends javax.swing.JFrame{
         jMenu3.setText("Caracteristicas");
 
         jMenuItem4.setText("Listado de caracteristicas");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
         jMenu3.add(jMenuItem4);
 
         jMenuItem5.setText("Agregar Caracteristicas");
@@ -107,6 +114,11 @@ public class menuform extends javax.swing.JFrame{
         jMenu4.setText("Ordenes de compra");
 
         jMenuItem7.setText("Listado de ordenes");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem7);
 
         jMenuItem8.setText("Nueva orden");
@@ -143,6 +155,15 @@ public class menuform extends javax.swing.JFrame{
             }
         });
         jMenu5.add(jMenuItem12);
+        jMenu5.add(jSeparator2);
+
+        stock.setText("Stock");
+        stock.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stockActionPerformed(evt);
+            }
+        });
+        jMenu5.add(stock);
 
         jMenuBar1.add(jMenu5);
 
@@ -162,22 +183,21 @@ public class menuform extends javax.swing.JFrame{
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
 
         productoForm.obtenerPantalla();
-        
 
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
 
         categoriaForm.obtenerPantalla();
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt){//GEN-FIRST:event_jMenuItem3ActionPerformed
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
         listadoCategoriasForm.obtenerPantalla();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
@@ -189,6 +209,7 @@ public class menuform extends javax.swing.JFrame{
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+        listadoProductos.obtenerPantalla();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -206,36 +227,51 @@ public class menuform extends javax.swing.JFrame{
         salidasForm.obtenerPantalla();
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        // TODO add your handling code here:
+        listadoCaracteristicas.obtenerPantalla();
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        listadoOrdenes.obtenerPantalla();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void stockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stockActionPerformed
+        // TODO add your handling code here:
+        listadoProductos_1.obtenerPantalla();
+    }//GEN-LAST:event_stockActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]){
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
-        try{
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()){
-                if ("Nimbus".equals(info.getName())){
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex){
-            java.util.logging.Logger.getLogger(menuform.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
-        } catch (InstantiationException ex){
-            java.util.logging.Logger.getLogger(menuform.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
-        } catch (IllegalAccessException ex){
-            java.util.logging.Logger.getLogger(menuform.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex){
-            java.util.logging.Logger.getLogger(menuform.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(menuform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(menuform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(menuform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(menuform.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable(){
-            public void run(){
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new menuform().setVisible(true);
             }
         });
@@ -261,5 +297,7 @@ public class menuform extends javax.swing.JFrame{
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
+    private javax.swing.JMenuItem stock;
     // End of variables declaration//GEN-END:variables
 }

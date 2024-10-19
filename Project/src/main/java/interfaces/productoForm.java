@@ -16,12 +16,11 @@ import modelos.Item;
  */
 public class productoForm extends javax.swing.JFrame {
 
-    
-    
     private static productoForm esVisible;
 
-     String valor ;
-     String etiqueta; 
+    String valor;
+    String etiqueta;
+
     /**
      * Creates new form productoForm
      */
@@ -31,33 +30,25 @@ public class productoForm extends javax.swing.JFrame {
     }
 
     private void fillComboBox() {
-       
-        DefaultComboBoxModel<Item> model = new DefaultComboBoxModel<>();
 
-            funcionalidad funcionalidad = new funcionalidad();
+        DefaultComboBoxModel<Item> model = new DefaultComboBoxModel<>();
+        funcionalidad funcionalidad = new funcionalidad();
 
         ArrayList<ArrayList<String>> resultado = funcionalidad.leerDb("categorias");
-        for (ArrayList<String> row : resultado){
-            System.out.println(row);
-
-           model.addElement(new Item(row.get(0), row.get(1)));
+        for (ArrayList<String> row : resultado) {
+            model.addElement(new Item(row.get(0), row.get(1)));
         }
 
-        
-        
         categorias.setModel(model);
-        
-              categorias.addActionListener(e -> {
+        categorias.addActionListener(e -> {
             Item selectedItem = (Item) categorias.getSelectedItem();
             if (selectedItem != null) {
                 valor = selectedItem.getValue();
                 etiqueta = selectedItem.getLabel();
                 System.out.println("Valor Seleccionado: " + valor);
                 System.out.println("Etiqueta Seleccionada: " + etiqueta);
-            }});
-        
-           
-
+            }
+        });
     }
 
     /**
@@ -104,50 +95,50 @@ public class productoForm extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel3)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(descri)
-                                    .addComponent(categorias, 0, 184, Short.MAX_VALUE)))
-                            .addComponent(codigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(77, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(25, 25, 25)
+                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel2)
+                                                        .addComponent(jLabel1)
+                                                        .addComponent(jLabel3)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                                        .addComponent(descri)
+                                                                        .addComponent(categorias, 0, 184, Short.MAX_VALUE)))
+                                                        .addComponent(codigo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(nombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGroup(layout.createSequentialGroup()
+                                                .addGap(159, 159, 159)
+                                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addContainerGap(77, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(5, 5, 5)
-                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(descri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(30, Short.MAX_VALUE))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2)
+                                .addGap(5, 5, 5)
+                                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(descri, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(categorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel4))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1)
+                                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -159,7 +150,7 @@ public class productoForm extends javax.swing.JFrame {
         String codigo = this.codigo.getText();
         String nombre = this.nombre.getText();
         String descri = this.descri.getText();
-        String guardar = codigo+","+nombre+","+descri+","+valor+","+etiqueta;
+        String guardar = codigo + "," + nombre + "," + descri + "," + valor;
         System.out.println(codigo);
         System.out.println(nombre);
         System.out.println(descri);
@@ -167,13 +158,12 @@ public class productoForm extends javax.swing.JFrame {
         System.out.println(etiqueta);
         System.out.println(guardar);
         funcionalidad.escribirDb("productos", guardar);
-        
-  
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_formWindowClosed
 
     /**
@@ -193,18 +183,15 @@ public class productoForm extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(productoForm.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
+            java.util.logging.Logger.getLogger(productoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(productoForm.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
+            java.util.logging.Logger.getLogger(productoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(productoForm.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
+            java.util.logging.Logger.getLogger(productoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(productoForm.class.getName()).log(java.util.logging.Level.SEVERE , null , ex);
+            java.util.logging.Logger.getLogger(productoForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-
-
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -213,19 +200,16 @@ public class productoForm extends javax.swing.JFrame {
             }
         });
 
-
     }
 
-    public static productoForm obtenerPantalla()
-    {
-        if (esVisible == null)
-        {
+    public static productoForm obtenerPantalla() {
+        if (esVisible == null) {
             esVisible = new productoForm();
             obtenerPantalla().setVisible(true);
         }
         return esVisible;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Item> categorias;
     private javax.swing.JTextField codigo;

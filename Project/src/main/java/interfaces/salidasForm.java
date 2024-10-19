@@ -4,21 +4,53 @@
  */
 package interfaces;
 
+import inyeccion.funcionalidad;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
+import modelos.Item;
+
 /**
  *
  * @author sergi
  */
 public class salidasForm extends javax.swing.JFrame {
 
-    
     private static salidasForm esVisible;
+  String valor;
+    String etiqueta;
+
     /**
      * Creates new form salidasForm
      */
     public salidasForm() {
         initComponents();
+        fillComboBox();
     }
 
+    
+    
+    private void fillComboBox() {
+        DefaultComboBoxModel<Item> model = new DefaultComboBoxModel<>();
+        funcionalidad funcionalidad = new funcionalidad();
+        ArrayList<ArrayList<String>> resultado = funcionalidad.leerDb("productos");
+        for (ArrayList<String> row : resultado) {
+            System.out.println(row);
+            model.addElement(new Item(row.get(0), row.get(1)));
+        }
+        producto.setModel(model);
+        producto.addActionListener(e -> {
+            Item selectedItem = (Item) producto.getSelectedItem();
+            if (selectedItem != null) {
+                valor = selectedItem.getValue();
+                etiqueta = selectedItem.getLabel();
+
+            }
+        });
+
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,32 +60,29 @@ public class salidasForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel7 = new javax.swing.JLabel();
+        listadoCategoriasForm1 = new interfaces.listadoCategoriasForm();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        comentario = new javax.swing.JTextArea();
         jLabel9 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        cantidad = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList<>();
-        jLabel1 = new javax.swing.JLabel();
+        jButton3 = new javax.swing.JButton();
+        producto = new javax.swing.JComboBox<>();
+        codigo = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
-        jLabel7.setText("Total");
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
-
-        jLabel10.setText("Precio por unidad");
+        comentario.setColumns(20);
+        comentario.setRows(5);
+        jScrollPane1.setViewportView(comentario);
 
         jLabel9.setText("Comentario");
 
@@ -62,12 +91,20 @@ public class salidasForm extends javax.swing.JFrame {
         jLabel5.setText("Producto");
 
         jButton1.setText("Despachar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Limpiar");
+        jButton3.setText("VALIDAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jScrollPane2.setViewportView(jList1);
-
-        jLabel1.setText("Informacion de producto");
+        jLabel6.setText("CODIGO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -76,71 +113,178 @@ public class salidasForm extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(33, 33, 33)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButton1)
+                                .addComponent(producto, javax.swing.GroupLayout.Alignment.TRAILING, 0, 393, Short.MAX_VALUE)
+                                .addComponent(cantidad, javax.swing.GroupLayout.Alignment.TRAILING)))
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(33, 33, 33)
+                            .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(64, 64, 64)
-                                .addComponent(jButton2))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1)
+                            .addComponent(jButton3))))
+                .addContainerGap(156, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(32, 32, 32)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))))
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(29, 29, 29)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(85, Short.MAX_VALUE))
+                        .addComponent(jLabel9)
+                        .addGap(1, 1, 1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+
+        esVisible = null;
+    }//GEN-LAST:event_formWindowClosing
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    funcionalidad funcionalidad = new funcionalidad();
+
+    boolean sepuede =false;
+        this.codigo.setText( funcionalidad.generarCodigoAleatorio(20));
+        
+         ArrayList<ArrayList<String>> listadoLimpio = new ArrayList<>();
+           
+           
+             listadoLimpio=   funcionalidad.calcularStock();
+                System.out.println("respuesta"+listadoLimpio);
+                
+                
+                
+         for (ArrayList<String> orde : listadoLimpio) {
+         
+
+             if(orde.get(0).trim().equalsIgnoreCase(valor))
+             {
+                 System.out.println("te encontr"+ orde.get(0));
+                if(Float.parseFloat(orde.get(2))-Float.parseFloat(this.cantidad.getText().trim())>0)
+                {
+                     JOptionPane.showMessageDialog(this, "correcto.", "Schuquiej", JOptionPane.WARNING_MESSAGE);
+                    
+                }
+                else
+                    
+                {
+                     JOptionPane.showMessageDialog(this, "No se puede despachar un monto mayor al stock.", "Schuquiej", JOptionPane.WARNING_MESSAGE);
+                }
+             }
+             
+         }
+        
+        
+        /*
+                funcionalidad funcionalidad = new funcionalidad();
+
+        this.codigo.setText( funcionalidad.generarCodigoAleatorio(20));
+        ArrayList<ArrayList<String>> ordenes = funcionalidad.leerDb("ordenes");
+        ArrayList<ArrayList<String>> categorias = funcionalidad.leerDb("productos");
+        ArrayList<ArrayList<String>> listadoLimpio = new ArrayList<>();
+
+   
+        String nombrProducto = "";
+        for (ArrayList<String> row : ordenes) {
+            nombrProducto = "NA";
+
+            for (ArrayList<String> cat : categorias) {
+                if (row.get(1).trim().equals(cat.get(0).trim())) {
+                    nombrProducto = cat.get(1);
+                }
+
+            }
+            ArrayList<String> nuevoListado = new ArrayList<>();
+            nuevoListado.add(row.get(0));
+            nuevoListado.add(row.get(1));
+            nuevoListado.add(nombrProducto);
+            nuevoListado.add(row.get(2));
+            nuevoListado.add(row.get(3));
+            nuevoListado.add(row.get(4));
+            nuevoListado.add(row.get(5));
+            nuevoListado.add(row.get(6));
+            listadoLimpio.add(nuevoListado);
+        }
+
+        for (ArrayList<String> row : listadoLimpio) {
+            nombrProducto = "NA";
+            if (codReq.trim().equalsIgnoreCase(row.get(0).trim())) {
+
+                System.out.println(row);
+
+                System.out.println("te encontre producto " + codReq + "  " + row.get(0));
+
+                System.out.println(row.get(0));
+                System.out.println(row.get(1));
+                System.out.println(row.get(2));
+
+                this.producto.setText(row.get(2));
+                this.codprod.setText(row.get(1));
+                this.cantidad.setText(row.get(3));
+                this.precio.setText(row.get(4));
+                this.total.setText(row.get(5));
+                this.comentario.setText(row.get(6));
+                this.estado.setText(row.get(7));
+
+            }
+
+        }
+
+*/
+        
+        
+          
+        
+        
+        
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+           ArrayList<ArrayList<String>> listadoLimpio = new ArrayList<>();
+           
+           
+                funcionalidad funcionalidad = new funcionalidad();
+             listadoLimpio=   funcionalidad.calcularStock();
+                System.out.println("respuesta"+listadoLimpio);
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -177,34 +321,27 @@ public class salidasForm extends javax.swing.JFrame {
         });
     }
 
-    
-     public static salidasForm obtenerPantalla()
-    {
+    public static salidasForm obtenerPantalla() {
         System.out.println(esVisible);
-        if (esVisible == null)
-        {
+        if (esVisible == null) {
             esVisible = new salidasForm();
             obtenerPantalla().setVisible(true);
         }
         return esVisible;
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField cantidad;
+    private javax.swing.JTextField codigo;
+    private javax.swing.JTextArea comentario;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private interfaces.listadoCategoriasForm listadoCategoriasForm1;
+    private javax.swing.JComboBox<Item> producto;
     // End of variables declaration//GEN-END:variables
 }
