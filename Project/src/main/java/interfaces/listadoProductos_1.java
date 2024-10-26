@@ -23,21 +23,29 @@ public class listadoProductos_1 extends javax.swing.JFrame {
         initComponents();
         llenartabla();
     }
+                         
 
+    
     private void llenartabla() {
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("CODIGO DE PRODUCTO");
         model.addColumn("PRODUCTO");
-        model.addColumn("CANTIDAD");
+        model.addColumn("INGRESO");
+        model.addColumn("SALIDA");
+         model.addColumn("STOCK");
+        
         tablaCategoria.setModel(model);
         funcionalidad funcionalidad = new funcionalidad();
 
         ArrayList<ArrayList<String>> productos = funcionalidad.calcularStock();
        
 
+        float cantidad =0;
         for (ArrayList<String> row : productos) {
-            model.addRow(new Object[]{row.get(0), row.get(1), row.get(2)});
+            cantidad = Float.parseFloat(row.get(2)) -Float.parseFloat(row.get(3)); 
+            model.addRow(new Object[]{row.get(0), row.get(1), row.get(2),row.get(3), cantidad});
+            
         }
 
     }
@@ -55,6 +63,11 @@ public class listadoProductos_1 extends javax.swing.JFrame {
         tablaCategoria = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         tablaCategoria.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,6 +101,11 @@ public class listadoProductos_1 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+           esVisible = null;
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

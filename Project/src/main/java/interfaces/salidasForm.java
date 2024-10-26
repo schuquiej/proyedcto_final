@@ -195,7 +195,7 @@ public class salidasForm extends javax.swing.JFrame {
              if(orde.get(0).trim().equalsIgnoreCase(valor))
              {
                  System.out.println("te encontr"+ orde.get(0));
-                if(Float.parseFloat(orde.get(2))-Float.parseFloat(this.cantidad.getText().trim())>0)
+                if(Float.parseFloat(orde.get(2))-Float.parseFloat(this.cantidad.getText().trim())>=0)
                 {
                      JOptionPane.showMessageDialog(this, "correcto.", "Schuquiej", JOptionPane.WARNING_MESSAGE);
                     
@@ -283,6 +283,25 @@ public class salidasForm extends javax.swing.JFrame {
                 funcionalidad funcionalidad = new funcionalidad();
              listadoLimpio=   funcionalidad.calcularStock();
                 System.out.println("respuesta"+listadoLimpio);
+                
+                
+                
+                
+                
+        String codigoV = this.codigo.getText();
+        String productoV = valor;
+
+        String mensaje = "ENTREGADO";
+        String movimiento = "SALIDA";
+        String cantidad = this.cantidad.getText();
+
+        String guardar = codigoV + "," + productoV + "," + mensaje + "," + movimiento + "," + cantidad ;
+        System.out.println(guardar);
+      //  boolean saber = funcionalidad.escribirDb("movimientos", guardar);
+       // System.out.println("revisar" + saber);
+                
+                
+                
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
